@@ -1,0 +1,604 @@
+<!DOCTYPE html>
+<html lang="ru">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, user-scalable=yes, viewport-fit=cover">
+    <meta name="theme-color" content="#102031">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <title>Европол Строитель — ведущий генподрядчик РФ</title>
+    
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        'evropol-orange': '#FF7E00',
+                        'evropol-yellow': '#FFD000',
+                        'evropol-blue': '#3B9AD9',
+                        'evropol-dark': '#102031'
+                    },
+                }
+            }
+        }
+    </script>
+    
+    <style>
+        /* Оптимизация для мобильных устройств */
+        * {
+            -webkit-tap-highlight-color: transparent;
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+            height: -webkit-fill-available;
+        }
+
+        body {
+            overflow-x: hidden;
+            min-height: 100vh;
+            min-height: -webkit-fill-available;
+            font-family: system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+        }
+
+        /* Оптимизация для сенсорных устройств */
+        button, a, input, textarea {
+            -webkit-user-select: none;
+            user-select: none;
+            outline: none;
+            touch-action: manipulation;
+        }
+
+        input, textarea {
+            -webkit-user-select: text;
+            user-select: text;
+            font-size: 16px !important;
+        }
+
+        img {
+            max-width: 100%;
+            height: auto;
+            display: block;
+        }
+
+        /* Кастомные классы */
+        .gradient-text {
+            background-image: linear-gradient(90deg, #FF7E00, #FFD000);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+            display: inline-block;
+        }
+
+        .btn-primary {
+            display: inline-block;
+            padding: 0.75rem 1.5rem;
+            background-image: linear-gradient(90deg, #FF7E00, #FFD000);
+            color: #ffffff;
+            font-weight: 700;
+            border-radius: 0.5rem;
+            transition: opacity 0.2s ease, transform 0.08s ease;
+            cursor: pointer;
+            text-align: center;
+            text-decoration: none;
+            border: none;
+            min-height: 44px;
+            min-width: 44px;
+        }
+
+        .btn-primary:hover {
+            opacity: 0.9;
+        }
+
+        .btn-primary:active {
+            transform: scale(0.98);
+        }
+
+        @media (max-width: 640px) {
+            .btn-primary {
+                padding: 0.5rem 1rem;
+                min-height: 40px;
+            }
+        }
+
+        /* Кликабельные контакты */
+        a[href^="tel:"],
+        a[href^="mailto:"] {
+            display: inline-flex;
+            align-items: center;
+            font-weight: 600;
+            padding: 0.5rem;
+            min-height: 44px;
+            color: inherit;
+            text-decoration: none;
+        }
+
+        a[href^="tel:"]:hover,
+        a[href^="mailto:"]:hover {
+            text-decoration: underline;
+        }
+
+        /* Адаптивность */
+        @media (max-width: 640px) {
+            body {
+                font-size: 14px;
+                line-height: 1.5;
+            }
+        }
+
+        /* Уменьшение анимации для пользователей с настройками */
+        @media (prefers-reduced-motion: reduce) {
+            * {
+                animation-duration: 0.01ms !important;
+                animation-iteration-count: 1 !important;
+                transition-duration: 0.01ms !important;
+                scroll-behavior: auto !important;
+            }
+        }
+    </style>
+    
+    <!-- SEO Meta Tags -->
+    <meta name="description" content="ООО «Европол Строитель» — ведущий генподрядчик РФ. Полный спектр строительных услуг: проектирование, строительство, отделка, инженерные сети.">
+    <meta name="keywords" content="генподрядчик, строительство, строительные услуги, промышленное строительство, гражданское строительство, Москва, Европол Строитель">
+    <link rel="canonical" href="https://pkevropol.ru/">
+    
+    <!-- Open Graph -->
+    <meta property="og:title" content="Европол Строитель — ведущий генподрядчик РФ">
+    <meta property="og:description" content="Полный спектр строительных услуг высочайшего качества">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://pkevropol.ru/">
+    <meta property="og:image" content="/logo.png">
+    <meta property="og:locale" content="ru_RU">
+    
+    <!-- Twitter Card -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Европол Строитель — ведущий генподрядчик РФ">
+    <meta name="twitter:description" content="Полный спектр строительных услуг высочайшего качества">
+    <meta name="twitter:image" content="/logo.png">
+    
+    <!-- Favicon -->
+    <link rel="icon" href="/logo.png" type="image/png">
+    <link rel="apple-touch-icon" href="/logo.png">
+    
+    <!-- Schema.org -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "Organization",
+      "name": "Европол Строитель",
+      "url": "https://pkevropol.ru",
+      "logo": "https://pkevropol.ru/logo.png",
+      "contactPoint": [{
+        "@type": "ContactPoint",
+        "telephone": "+7-495-518-89-39",
+        "contactType": "customer service",
+        "areaServed": "RU",
+        "availableLanguage": ["Russian"]
+      }],
+      "address": {
+        "@type": "PostalAddress",
+        "streetAddress": "ул. Выборгская, д. 16, стр. 1, офис 410",
+        "addressLocality": "Москва",
+        "addressCountry": "RU"
+      }
+    }
+    </script>
+</head>
+
+<body class="bg-white text-gray-800">
+    <!-- Header -->
+    <header class="bg-evropol-dark sticky top-0 z-50 shadow-md">
+        <div class="container mx-auto px-4 py-3 md:py-4">
+            <div class="flex justify-between items-center">
+                <div class="flex items-center">
+                    <img src="/logo.png" alt="Логотип «Европол Строитель» class="h-10 md:h-16 w-auto" loading="eager" width="160" height="64">
+                </div>
+
+                <!-- Mobile menu button -->
+                <button id="menu-toggle" class="md:hidden text-white p-3 rounded-lg hover:bg-gray-700 transition-colors min-w-[44px] min-h-[44px]" aria-label="Меню" aria-expanded="false">
+                    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M4 6h16M4 12h16m-7 6h7"></path>
+                    </svg>
+                </button>
+
+                <!-- Desktop Navigation -->
+                <nav class="hidden md:flex space-x-4 lg:space-x-8" aria-label="Основная навигация">
+                    <a href="#about" class="text-white text-sm lg:text-base hover:text-evropol-yellow transition-colors py-2 px-3">О компании</a>
+                    <a href="#services" class="text-white text-sm lg:text-base hover:text-evropol-yellow transition-colors py-2 px-3">Услуги</a>
+                    <a href="#projects" class="text-white text-sm lg:text-base hover:text-evropol-yellow transition-colors py-2 px-3">Проекты</a>
+                    <a href="#contacts" class="text-white text-sm lg:text-base hover:text-evropol-yellow transition-colors py-2 px-3">Контакты</a>
+                </nav>
+            </div>
+
+            <!-- Mobile Navigation -->
+            <nav id="mobile-menu" class="hidden md:hidden mt-4 pb-4 border-t border-gray-700" aria-label="Мобильная навигация">
+                <div class="flex flex-col space-y-3 pt-4">
+                    <a href="#about" class="text-white hover:text-evropol-yellow transition-colors block py-3 px-4 rounded hover:bg-gray-700 text-base">О компании</a>
+                    <a href="#services" class="text-white hover:text-evropol-yellow transition-colors block py-3 px-4 rounded hover:bg-gray-700 text-base">Услуги</a>
+                    <a href="#projects" class="text-white hover:text-evropol-yellow transition-colors block py-3 px-4 rounded hover:bg-gray-700 text-base">Проекты</a>
+                    <a href="#contacts" class="text-white hover:text-evropol-yellow transition-colors block py-3 px-4 rounded hover:bg-gray-700 text-base">Контакты</a>
+                </div>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="bg-evropol-dark text-white py-12 md:py-20 lg:py-24">
+        <div class="container mx-auto px-4">
+            <div class="flex flex-col items-center text-center">
+                <h1 class="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold mb-3 md:mb-4">
+                    <span class="gradient-text">Генподрядчик в России — «Европол Строитель»</span>
+                </h1>
+                <p class="text-lg sm:text-xl md:text-2xl lg:text-3xl mb-4 md:mb-6 text-gray-300">Ведущий генподрядчик Российской Федерации</p>
+                <p class="text-base sm:text-lg mb-6 md:mb-8 max-w-3xl text-gray-300">Полный спектр строительных услуг высочайшего качества для
+                    промышленного, гражданского и инфраструктурного строительства.</p>
+                <a href="#contacts" class="btn-primary text-sm sm:text-base" aria-label="Перейти к контактам">Связаться с нами</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section id="about" class="py-12 md:py-16 lg:py-24 scroll-mt-16">
+        <div class="container mx-auto px-4">
+            <h2 class="text-2xl sm:text-3xl md:text-4xl font-bold mb-4 md:mb-6 gradient-text">О компании ООО «Европол Строитель» — генподрядчик</h2>
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-6 md:gap-8">
+                <div>
+                    <p class="text-base md:text-lg mb-4">ООО «Европол Строитель» — ведущий генподрядчик Российской Федерации,
+                        предоставляющий полный спектр строительных услуг высочайшего качества. Мы специализируемся на
+                        реализации масштабных проектов в области промышленного, гражданского и инфраструктурного
+                        строительства.</p>
+                    <p class="text-base md:text-lg mb-4">Мы гордимся доверием наших клиентов и партнеров, среди которых — крупные
+                        государственные и частные компании. ООО «Европол Строитель» — ваш надежный партнер в создании
+                        объектов, которые служат людям и бизнесу.</p>
+                    <p class="text-lg md:text-xl font-semibold mt-6">Строим будущее России вместе!</p>
+                </div>
+                <div>
+                    <h3 class="text-lg md:text-xl font-bold mb-4 text-evropol-blue">Наши ключевые преимущества:</h3>
+                    <ul class="space-y-3 md:space-y-4">
+                        <li class="flex gap-3">
+                            <div class="text-evropol-orange flex-shrink-0 mt-0.5" aria-hidden="true">
+                                <svg class="w-5 h-5 md:w-6 md:h-6" fill="currentColor" viewBox="0 0 20 20">
+                                    <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"></path>
+                                </svg>
+                            </div>
+                            <div>
+                                <strong class="text-sm md:text-base">Профессионализм и опыт:</strong> <span class="text-sm md:text-base">более 10 лет успешной работы на рынке, сотни завершенных объектов по всей России.</span>
+                            </div>
+                        </li>
+                        <li class="flex gap-3">
+                            <div class="text-evropol-orange flex-shrink-0 mt-0.5" aria-hidden="true">
+                                <svg class="w-5 h-5 md:w-6 md:h-6" fill="currentColor" viewBox="0 0 20 20">
+                                    <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"></path>
+                                </svg>
+                            </div>
+                            <div>
+                                <strong class="text-sm md:text-base">Комплексный подход:</strong> <span class="text-sm md:text-base">от проектирования до сдачи объекта под ключ с соблюдением сроков и бюджета.</span>
+                            </div>
+                        </li>
+                        <li class="flex gap-3">
+                            <div class="text-evropol-orange flex-shrink-0 mt-0.5" aria-hidden="true">
+                                <svg class="w-5 h-5 md:w-6 md:h-6" fill="currentColor" viewBox="0 0 20 20">
+                                    <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"></path>
+                                </svg>
+                            </div>
+                            <div>
+                                <strong class="text-sm md:text-base">Современные технологии:</strong> <span class="text-sm md:text-base">используем передовые строительные решения и оборудование.</span>
+                            </div>
+                        </li>
+                        <li class="flex gap-3">
+                            <div class="text-evropol-orange flex-shrink-0 mt-0.5" aria-hidden="true">
+                                <svg class="w-5 h-5 md:w-6 md:h-6" fill="currentColor" viewBox="0 0 20 20">
+                                    <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"></path>
+                                </svg>
+                            </div>
+                            <div>
+                                <strong class="text-sm md:text-base">Надежность и прозрачность:</strong> <span class="text-sm md:text-base">строгое соблюдение стандартов качества и договорных обязательств.</span>
+                            </div>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Services Section -->
+    <section id="services" class="py-12 md:py-16 lg:py-24 bg-gray-50 scroll-mt-16">
+        <div class="container mx-auto px-4">
+            <h2 class="text-2xl sm:text-3xl md:text-4xl font-bold mb-4 md:mb-6 gradient-text">Наши услуги — строительство и генподряд</h2>
+            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 md:gap-6 lg:gap-8">
+                <!-- Service 1 -->
+                <div class="bg-white rounded-lg shadow-lg overflow-hidden hover:shadow-xl transition-shadow">
+                    <div class="h-40 sm:h-48 bg-gray-200 bg-cover bg-center" style="background-image: url('/Zdaniye.png');"></div>
+                    <div class="p-4 md:p-6">
+                        <h3 class="text-lg md:text-xl font-bold mb-3 text-evropol-blue">Здания</h3>
+                        <p class="text-sm md:text-base mb-4">Индивидуальное проектирование, производство, комплектация и монтаж быстровозводимых зданий.</p>
+                        <a href="/evropol_construction.pdf" class="btn-primary text-center block w-full text-sm md:text-base" target="_blank" rel="noopener noreferrer">Презентация</a>
+                    </div>
+                </div>
+
+                <!-- Service 2 -->
+                <div class="bg-white rounded-lg shadow-lg overflow-hidden hover:shadow-xl transition-shadow">
+                    <div class="h-40 sm:h-48 bg-gray-200 bg-cover bg-center" style="background-image: url('/monolit.jpg');"></div>
+                    <div class="p-4 md:p-6">
+                        <h3 class="text-lg md:text-xl font-bold mb-3 text-evropol-blue">Монолитные работы</h3>
+                        <ul class="text-sm md:text-base space-y-1 md:space-y-2">
+                            <li>• Промышленные бетонные полы</li>
+                            <li>• Топпинговые полы</li>
+                            <li>• Полимерные полы</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- Service 3 -->
+                <div class="bg-white rounded-lg shadow-lg overflow-hidden hover:shadow-xl transition-shadow">
+                    <div class="h-40 sm:h-48 bg-gray-200 bg-cover bg-center" style="background-image: url('/stelaji.jpg');"></div>
+                    <div class="p-4 md:p-6">
+                        <h3 class="text-lg md:text-xl font-bold mb-3 text-evropol-blue">Стеллажные работы</h3>
+                        <ul class="text-sm md:text-base space-y-1 md:space-y-2">
+                            <li>• Проектирование стеллажных систем</li>
+                            <li>• Оптимальное использование площадей</li>
+                            <li>• Мобильные и стационарные стеллажи</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- Service 4 -->
+                <div class="bg-white rounded-lg shadow-lg overflow-hidden hover:shadow-xl transition-shadow">
+                    <div class="h-40 sm:h-48 bg-gray-200 bg-cover bg-center" style="background-image: url('/krovlya.jpg');"></div>
+                    <div class="p-4 md:p-6">
+                        <h3 class="text-lg md:text-xl font-bold mb-3 text-evropol-blue">Кровля</h3>
+                        <ul class="text-sm md:text-base space-y-1 md:space-y-2">
+                            <li>• Мембранная кровля</li>
+                            <li>• Листовая кровля</li>
+                            <li>• Мягкая кровля</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- Service 5 -->
+                <div class="bg-white rounded-lg shadow-lg overflow-hidden hover:shadow-xl transition-shadow">
+                    <div class="h-40 sm:h-48 bg-gray-200 bg-cover bg-center" style="background-image: url('/nasosy.jpg');"></div>
+                    <div class="p-4 md:p-6">
+                        <h3 class="text-lg md:text-xl font-bold mb-3 text-evropol-blue">Поставка насосных станций и ИТП</h3>
+                        <p class="text-sm md:text-base mb-4">Проектирование и установка насосных станций и ИТП.</p>
+                    </div>
+                </div>
+
+                <!-- Service 6 -->
+                <div class="bg-white rounded-lg shadow-lg overflow-hidden hover:shadow-xl transition-shadow">
+                    <div class="h-40 sm:h-48 bg-gray-200 bg-cover bg-center" style="background-image: url('/otdelochnie.jpg');"></div>
+                    <div class="p-4 md:p-6">
+                        <h3 class="text-lg md:text-xl font-bold mb-3 text-evropol-blue">Отделочные работы</h3>
+                        <p class="text-sm md:text-base mb-4">Полный спектр отделочных услуг, включая внутреннюю и внешнюю отделку.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Projects Section -->
+    <section id="projects" class="py-12 md:py-16 lg:py-24 scroll-mt-16">
+        <div class="container mx-auto px-4">
+            <h2 class="text-2xl sm:text-3xl md:text-4xl font-bold mb-4 md:mb-6 gradient-text">Наши проекты — реализованные объекты</h2>
+            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 md:gap-6">
+                <!-- Project 1 -->
+                <div class="bg-gray-200 bg-cover bg-center h-48 sm:h-56 md:h-64 rounded-lg shadow-lg hover:shadow-xl transition-shadow relative group" style="background-image: url('/vnutrennie.jpg');">
+                    <div class="absolute inset-0 bg-black bg-opacity-40 rounded-lg group-hover:bg-opacity-50 transition-colors flex items-end">
+                        <div class="p-3 md:p-4 text-white w-full">
+                            <h3 class="font-bold text-sm md:text-lg">Внутренние сети</h3>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Project 2 -->
+                <div class="bg-gray-200 bg-cover bg-center h-48 sm:h-56 md:h-64 rounded-lg shadow-lg hover:shadow-xl transition-shadow relative group" style="background-image: url('/narujnie.jpg');">
+                    <div class="absolute inset-0 bg-black bg-opacity-40 rounded-lg group-hover:bg-opacity-50 transition-colors flex items-end">
+                        <div class="p-3 md:p-4 text-white w-full">
+                            <h3 class="font-bold text-sm md:text-lg">Наружные сети</h3>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Project 3 -->
+                <div class="bg-gray-200 bg-cover bg-center h-48 sm:h-56 md:h-64 rounded-lg shadow-lg hover:shadow-xl transition-shadow relative group" style="background-image: url('/fasad.jpg');">
+                    <div class="absolute inset-0 bg-black bg-opacity-40 rounded-lg group-hover:bg-opacity-50 transition-colors flex items-end">
+                        <div class="p-3 md:p-4 text-white w-full">
+                            <h3 class="font-bold text-sm md:text-lg">Фасадные работы</h3>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Project 4 -->
+                <div class="bg-gray-200 bg-cover bg-center h-48 sm:h-56 md:h-64 rounded-lg shadow-lg hover:shadow-xl transition-shadow relative group" style="background-image: url('/okna.jpg');">
+                    <div class="absolute inset-0 bg-black bg-opacity-40 rounded-lg group-hover:bg-opacity-50 transition-colors flex items-end">
+                        <div class="p-3 md:p-4 text-white w-full">
+                            <h3 class="font-bold text-sm md:text-lg">Окна</h3>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Project 5 -->
+                <div class="bg-gray-200 bg-cover bg-center h-48 sm:h-56 md:h-64 rounded-lg shadow-lg hover:shadow-xl transition-shadow relative group" style="background-image: url('/otdelochnie.jpg');">
+                    <div class="absolute inset-0 bg-black bg-opacity-40 rounded-lg group-hover:bg-opacity-50 transition-colors flex items-end">
+                        <div class="p-3 md:p-4 text-white w-full">
+                            <h3 class="font-bold text-sm md:text-lg">Отделочные работы</h3>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Project 6 -->
+                <div class="bg-gray-200 bg-cover bg-center h-48 sm:h-56 md:h-64 rounded-lg shadow-lg hover:shadow-xl transition-shadow relative group" style="background-image: url('/monolit.jpg');">
+                    <div class="absolute inset-0 bg-black bg-opacity-40 rounded-lg group-hover:bg-opacity-50 transition-colors flex items-end">
+                        <div class="p-3 md:p-4 text-white w-full">
+                            <h3 class="font-bold text-sm md:text-lg">Монолитные работы</h3>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contacts Section -->
+    <section id="contacts" class="py-12 md:py-16 lg:py-24 bg-evropol-dark text-white scroll-mt-16">
+        <div class="container mx-auto px-4">
+            <h2 class="text-2xl sm:text-3xl md:text-4xl font-bold mb-4 md:mb-6 gradient-text">Связаться с нами — контакты «Европол Строитель»</h2>
+            <div class="grid grid-cols-1 gap-6 md:gap-8">
+                <div>
+                    <h3 class="text-lg md:text-xl font-bold mb-4 md:mb-6">Контактная информация:</h3>
+                    <div class="flex flex-col sm:flex-row flex-wrap items-start gap-4 text-gray-300">
+                        <span class="flex items-center gap-2 py-2">
+                            <svg class="w-5 h-5 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20">
+                                <path fill-rule="evenodd" d="M5.05 4.05a7 7 0 119.9 9.9L10 18.9l-4.95-4.95a7 7 0 010-9.9zM10 11a2 2 0 100-4 2 2 0 000 4z" clip-rule="evenodd"></path>
+                            </svg>
+                            <span>г. Москва, ул. Выборгская, д. 16, стр. 1, офис 410</span>
+                        </span>
+                        <a href="tel:+74955188939" class="flex items-center gap-2 py-2 hover:text-evropol-yellow">
+                            <svg class="w-5 h-5 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20">
+                                <path d="M2 3a1 1 0 011-1h2.153a1 1 0 01.986.836l.74 4.435a1 1 0 01-.54 1.06l-1.548.773a11.037 11.037 0 006.105 6.105l.774-1.548a1 1 0 011.059-.54l4.435.74a1 1 0 01.836.986V17a1 1 0 01-1 1h-2C7.82 18 2 12.18 2 5V3z"/>
+                            </svg>
+                            <span>+7 (495) 518-89-39</span>
+                        </a>
+                        <a href="mailto:info@pkevropol.ru" class="flex items-center gap-2 py-2 hover:text-evropol-yellow">
+                            <svg class="w-5 h-5 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20">
+                                <path d="M14.243 5.757a6 6 0 10-.986 9.284 1 1 0 111.087 1.678A8 8 0 1118 10a3 3 0 01-4.8 2.401A4 4 0 1114 10a1 1 0 102 0c0-1.537-.586-3.07-1.757-4.243zM12 10a2 2 0 10-4 0 2 2 0 004 0z" clip-rule="evenodd"></path>
+                            </svg>
+                            <span>info@pkevropol.ru</span>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-evropol-dark py-6 md:py-8 border-t border-gray-800">
+        <div class="container mx-auto px-4">
+            <div class="flex flex-col md:flex-row justify-between items-center gap-4 md:gap-8">
+                <div class="mb-4 md:mb-0">
+                    <img src="/logo.png" alt="Логотип «Европол Строитель» class="h-10 md:h-12 w-auto" loading="lazy" width="120" height="48">
+                </div>
+                <div class="text-white text-center md:text-right flex flex-col items-center md:items-end gap-2 md:gap-3">
+                    <div class="flex flex-col sm:flex-row gap-2 md:gap-3 justify-center md:justify-end flex-wrap">
+                        <a href="/certificate.pdf" class="btn-primary text-xs md:text-sm px-3 md:px-4 py-2" target="_blank" rel="noopener noreferrer">Выписка СРО</a>
+                        <a href="/information.pdf" class="btn-primary text-xs md:text-sm px-3 md:px-4 py-2" target="_blank" rel="noopener noreferrer">Antarus</a>
+                        <a href="/cai.jpg" class="btn-primary text-xs md:text-sm px-3 md:px-4 py-2" target="_blank" rel="noopener noreferrer">ЦАИ</a>
+                    </div>
+                    <!-- Социальные сети -->
+                    <div class="flex space-x-3 md:space-x-4 justify-center md:justify-end">
+                        <a href="https://t.me/presentpefect" target="_blank" rel="noopener noreferrer"
+                            class="text-white hover:text-evropol-yellow transition-colors p-2 min-w-[44px] min-h-[44px] flex items-center justify-center" aria-label="Telegram">
+                            <svg class="w-5 h-5 md:w-6 md:h-6" fill="currentColor" viewBox="0 0 24 24">
+                                <path d="M12 0C5.373 0 0 5.373 0 12s5.373 12 12 12 12-5.373 12-12S18.627 0 12 0zm5.562 8.16c-.18 1.896-.96 6.504-1.356 8.628-.168.9-.504 1.2-.816 1.236-.696.06-1.224-.456-1.896-.9-1.056-.696-1.656-1.128-2.676-1.8-1.188-.78-.42-1.212.264-1.908.18-.18 3.252-2.976 3.312-3.228.008-.03.012-.138-.052-.198s-.164-.018-.234 0c-.099.024-1.673 1.062-4.722 3.114-.444.306-.846.456-1.206.444-.396-.012-1.164-.216-1.734-.396-.702-.204-1.26-.312-1.212-.66.024-.18.348-.36.948-.54 3.768-1.632 6.27-2.706 7.5-3.228 3.57-1.476 4.32-.348 4.02 1.428z" />
+                            </svg>
+                        </a>
+                        <a href="https://www.youtube.com/@evropolmoscow" target="_blank" rel="noopener noreferrer"
+                            class="text-white hover:text-evropol-yellow transition-colors p-2 min-w-[44px] min-h-[44px] flex items-center justify-center" aria-label="YouTube">
+                            <svg class="w-5 h-5 md:w-6 md:h-6" fill="currentColor" viewBox="0 0 24 24">
+                                <path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z" />
+                            </svg>
+                        </a>
+                        <a href="https://vk.com/evropolmsk" target="_blank" rel="noopener noreferrer"
+                            class="text-white hover:text-evropol-yellow transition-colors p-2 min-w-[44px] min-h-[44px] flex items-center justify-center" aria-label="VKontakte">
+                            <svg class="w-5 h-5 md:w-6 md:h-6" fill="currentColor" viewBox="0 0 24 24">
+                                <path d="M21.547 7h-3.29a.743.743 0 0 0-.655.392s-1.312 2.416-1.734 3.23c-1.239 2.477-2.334 2.31-2.589 2.147-.559-.365-.42-1.468-.42-2.248 0-2.448.366-3.5-.714-3.764-.357-.085-.621-.144-1.536-.155-1.172-.012-2.163.003-2.723.28-.377.185-.667.595-.49.62.218.027.713.128.975.474.339.448.326 1.458.326 1.458s.195 2.78-.45 3.125c-.448.239-1.065-.247-2.39-2.5-.676-1.164-1.19-2.447-1.19-2.447s-.1-.241-.273-.372c-.212-.158-.511-.208-.511-.208l-3.085.017s-.463.013-.633.213c-.152.18-.013.55-.013.55s2.462 5.742 5.241 8.63c2.558 2.658 5.456 2.483 5.456 2.483h1.312s.397-.043.599-.263c.186-.204.18-.587.18-.587s-.028-1.79.806-2.055c.822-.264 1.875 1.735 3 2.505.845.585 1.49.457 1.49.457l3-.042s1.565-.097.824-1.325c-.061-.101-.437-.927-2.238-2.621-1.891-1.768-1.634-1.485.64-4.545 1.387-1.87 1.947-3 1.773-3.493-.166-.468-1.193-.343-1.193-.343z" />
+                            </svg>
+                        </a>
+                    </div>
+                    <p class="text-xs md:text-sm text-gray-400">&copy; 2026 ООО «Европол Строитель». Все права защищены.</p>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- JavaScript -->
+    <script>
+        (function() {
+            'use strict';
+
+            // Mobile menu functionality
+            const menuToggle = document.getElementById('menu-toggle');
+            const mobileMenu = document.getElementById('mobile-menu');
+
+            if (menuToggle && mobileMenu) {
+                menuToggle.addEventListener('click', function() {
+                    const isHidden = mobileMenu.classList.contains('hidden');
+                    mobileMenu.classList.toggle('hidden', !isHidden);
+                    menuToggle.setAttribute('aria-expanded', !isHidden);
+                    
+                    if (!isHidden) {
+                        mobileMenu.querySelector('a')?.focus();
+                    }
+                });
+
+                mobileMenu.querySelectorAll('a').forEach(link => {
+                    link.addEventListener('click', function() {
+                        mobileMenu.classList.add('hidden');
+                        menuToggle.setAttribute('aria-expanded', 'false');
+                    });
+                });
+
+                document.addEventListener('click', function(event) {
+                    if (!menuToggle.contains(event.target) && !mobileMenu.contains(event.target)) {
+                        mobileMenu.classList.add('hidden');
+                        menuToggle.setAttribute('aria-expanded', 'false');
+                    }
+                });
+            }
+
+            // Smooth scroll для якорей
+            document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+                anchor.addEventListener('click', function(e) {
+                    const href = this.getAttribute('href');
+                    if (href === '#') return;
+                    
+                    const target = document.querySelector(href);
+                    if (target) {
+                        e.preventDefault();
+                        const headerOffset = 80;
+                        const elementPosition = target.getBoundingClientRect().top;
+                        const offsetPosition = elementPosition + window.pageYOffset - headerOffset;
+
+                        window.scrollTo({
+                            top: offsetPosition,
+                            behavior: 'smooth'
+                        });
+
+                        history.pushState(null, null, href);
+                    }
+                });
+            });
+
+            // Предотвращение двойного тапа для зума
+            let lastTouchEnd = 0;
+            document.addEventListener('touchend', function(event) {
+                const now = Date.now();
+                if (now - lastTouchEnd <= 300) {
+                    event.preventDefault();
+                }
+                lastTouchEnd = now;
+            }, { passive: false });
+
+            // Оптимизация для мобильных
+            function optimizeForMobile() {
+                const vh = window.innerHeight * 0.01;
+                document.documentElement.style.setProperty('--vh', `${vh}px`);
+            }
+
+            window.addEventListener('resize', optimizeForMobile);
+            window.addEventListener('orientationchange', optimizeForMobile);
+            optimizeForMobile();
+
+            console.log('Сайт успешно загружен');
+        })();
+    </script>
+</body>
+
+</html>
