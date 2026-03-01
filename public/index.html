@@ -143,6 +143,23 @@
                 scroll-behavior: auto !important;
             }
         }
+
+        /* Стили для адаптивного хедера при скроле */
+        header {
+            transition: all 0.3s ease;
+        }
+
+        header .container {
+            transition: padding 0.3s ease;
+        }
+
+        header img {
+            transition: height 0.3s ease;
+        }
+
+        header .text-white {
+            transition: font-size 0.3s ease;
+        }
     </style>
     
     <!-- SEO Meta Tags -->
@@ -595,6 +612,33 @@
             window.addEventListener('resize', optimizeForMobile);
             window.addEventListener('orientationchange', optimizeForMobile);
             optimizeForMobile();
+
+            // Уменьшение хедера при скроле
+            const header = document.querySelector('header');
+            const headerContainer = header.querySelector('.container');
+            let lastScrollTop = 0;
+
+            window.addEventListener('scroll', function() {
+                const currentScroll = window.pageYOffset || document.documentElement.scrollTop;
+                
+                if (currentScroll > 50) {
+                    // При скроле - компактный хедер
+                    header.classList.add('scrolled');
+                    if (!headerContainer.classList.contains('py-1')) {
+                        headerContainer.classList.remove('py-3', 'md:py-4');
+                        headerContainer.classList.add('py-1', 'md:py-2');
+                    }
+                } else {
+                    // Вверху - обычный размер
+                    header.classList.remove('scrolled');
+                    if (!headerContainer.classList.contains('py-3')) {
+                        headerContainer.classList.remove('py-1', 'md:py-2');
+                        headerContainer.classList.add('py-3', 'md:py-4');
+                    }
+                }
+                
+                lastScrollTop = currentScroll <= 0 ? 0 : currentScroll;
+            });
 
             console.log('Сайт успешно загружен');
         })();
