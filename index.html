@@ -143,6 +143,61 @@
                 scroll-behavior: auto !important;
             }
         }
+            /* Сжимающаяся шапка при прокрутке — более мягкая анимация */
+            :root {
+                --header-transition: 320ms cubic-bezier(.2,.9,.2,1);
+            }
+
+            #site-header {
+                background-color: rgba(16,32,49,0.95);
+                -webkit-backdrop-filter: blur(4px);
+                backdrop-filter: blur(4px);
+            }
+
+            /* Контейнер внутри шапки анимируем по отступам */
+            #site-header .container {
+                padding-top: 0.75rem; /* соответствует py-3 */
+                padding-bottom: 0.75rem;
+                transition: padding var(--header-transition), box-shadow var(--header-transition), background-color var(--header-transition);
+            }
+
+            /* Логотип: дефолтные размеры и плавное изменение */
+            .logo-img {
+                height: 40px;
+                transition: height var(--header-transition), transform var(--header-transition);
+                transform-origin: left center;
+            }
+
+            /* При добавлении класса .shrink — уменьшаем отступы шапки и немного масштабируем логотип */
+            #site-header.shrink .container {
+                padding-top: 0.35rem; /* чуть меньше */
+                padding-bottom: 0.35rem;
+                box-shadow: 0 6px 18px rgba(16,32,49,0.18);
+            }
+
+            #site-header.shrink .logo-img {
+                height: 32px !important;
+                transform: scale(0.95);
+            }
+
+            /* На больших экранах: исходный и уменьшённый размер логотипа */
+            @media (min-width: 768px) {
+                #site-header .container {
+                    padding-top: 1rem; /* соответствует md:py-4 */
+                    padding-bottom: 1rem;
+                }
+                .logo-img {
+                    height: 64px;
+                }
+                #site-header.shrink .logo-img {
+                    height: 44px !important;
+                    transform: scale(0.98);
+                }
+                #site-header.shrink .container {
+                    padding-top: 0.5rem;
+                    padding-bottom: 0.5rem;
+                }
+            }
     </style>
     
     <!-- SEO Meta Tags -->
@@ -195,11 +250,11 @@
 
 <body class="bg-white text-gray-800">
     <!-- Header -->
-    <header class="bg-evropol-dark sticky top-0 z-50 shadow-md">
+    <header id="site-header" class="bg-evropol-dark sticky top-0 z-50 shadow-md">
         <div class="container mx-auto px-4 py-3 md:py-4">
             <div class="flex justify-between items-center">
                 <div class="flex items-center">
-                    <img src="/logo.png" alt="Логотип «Европол Строитель» class="h-10 md:h-16 w-auto" loading="eager" width="160" height="64">
+                    <img src="/logo.png" alt="Логотип «Европол Строитель»" class="h-10 md:h-16 w-auto logo-img" loading="eager" width="160" height="64">
                 </div>
 
                 <!-- Mobile menu button -->
@@ -597,6 +652,42 @@
             optimizeForMobile();
 
             console.log('Сайт успешно загружен');
+        })();
+    </script>
+    <script>
+        (function() {
+            const header = document.getElementById('site-header');
+            if (!header) return;
+
+            let lastScroll = 0;
+            const threshold = 80; // пикселей прокрутки, после которых шапка уменьшается
+            const hysteresis = 12; // возврат произойдет ниже (threshold - hysteresis)
+            let ticking = false;
+
+            function updateHeader() {
+                const current = lastScroll;
+                if (current > threshold) {
+                    header.classList.add('shrink');
+                } else if (current < (threshold - hysteresis)) {
+                    header.classList.remove('shrink');
+                }
+            }
+
+            function onScroll() {
+                lastScroll = window.scrollY || window.pageYOffset;
+                if (!ticking) {
+                    window.requestAnimationFrame(function() {
+                        updateHeader();
+                        ticking = false;
+                    });
+                    ticking = true;
+                }
+            }
+
+            window.addEventListener('scroll', onScroll, { passive: true });
+            // инициализация на случай, если страница загружена не в верхней точке
+            lastScroll = window.scrollY || window.pageYOffset;
+            updateHeader();
         })();
     </script>
 </body>
