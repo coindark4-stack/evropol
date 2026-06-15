@@ -11,6 +11,9 @@
     
     <!-- Tailwind CSS -->
     <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700;800&family=Merriweather:wght@300;400;700&display=swap" rel="stylesheet">
     <script>
         tailwind.config = {
             theme: {
@@ -24,6 +27,23 @@
                 }
             }
         }
+    </script>
+    <script>
+        (function(){
+            const menuToggle = document.getElementById('menu-toggle');
+            const mobileMenu = document.getElementById('mobile-menu');
+            if(menuToggle && mobileMenu){
+                menuToggle.addEventListener('click', function(){
+                    const open = mobileMenu.classList.toggle('is-open');
+                    menuToggle.setAttribute('aria-expanded', open);
+                    if(open) mobileMenu.style.maxHeight = mobileMenu.scrollHeight + 'px'; else mobileMenu.style.maxHeight = '';
+                }, {passive:true});
+
+                window.addEventListener('resize', function(){ if(window.innerWidth >= 768){ mobileMenu.classList.remove('is-open'); mobileMenu.style.maxHeight=''; menuToggle.setAttribute('aria-expanded','false'); } }, {passive:true});
+
+                mobileMenu.querySelectorAll('a').forEach(link => link.addEventListener('click', function(){ mobileMenu.classList.remove('is-open'); mobileMenu.style.maxHeight=''; menuToggle.setAttribute('aria-expanded','false'); }, {passive:true}));
+            }
+        })();
     </script>
     
     <style>
@@ -199,6 +219,74 @@
                 }
             }
     </style>
+    <style>
+        /* Skip link styles */
+        .sr-only{position:absolute!important;height:1px;width:1px;overflow:hidden;clip:rect(1px,1px,1px,1px);white-space:nowrap;border:0;padding:0;margin:-1px}
+        .skip-link{position:absolute;left:1rem;top:1rem;background:#081426;color:#fff;padding:0.5rem 0.75rem;border-radius:6px;z-index:60;transform:translateY(-120%);opacity:0;transition:transform .18s ease,opacity .18s ease}
+        .skip-link:focus{transform:none;opacity:1}
+
+        .reveal{opacity:0;transform:translateY(10px);transition:opacity .6s ease, transform .6s ease}
+        .reveal.show{opacity:1;transform:none}
+
+        a:focus-visible, button:focus-visible {outline:3px solid var(--brand-yellow); outline-offset:2px}
+
+        #back-to-top{position:fixed;right:1rem;bottom:1rem;background:var(--evropol-dark);color:#fff;border-radius:10px;padding:0.5rem;display:none;z-index:70;box-shadow:0 10px 30px rgba(2,6,23,0.2)}
+        #float-cta{position:fixed;left:1rem;bottom:1rem;background:linear-gradient(90deg,var(--brand-orange),var(--brand-yellow));color:#081020;border-radius:12px;padding:0.6rem 0.9rem;font-weight:700;z-index:70;box-shadow:0 14px 40px rgba(0,0,0,0.18)}
+
+        @media (prefers-reduced-motion: reduce){
+            .reveal{transition:none}
+        }
+        /* Navigation / Mobile menu improvements */
+        #mobile-menu{max-height:0;overflow:hidden;transition:max-height .36s cubic-bezier(.2,.9,.2,1)}
+        #mobile-menu.is-open{max-height:1200px}
+        #menu-toggle{transition:transform .18s ease}
+        #menu-toggle[aria-expanded="true"]{transform:rotate(90deg)}
+        nav a{transition:color .18s ease, transform .18s ease}
+        nav a:hover{transform:translateY(-3px)}
+        a.btn-primary, .social-circle{touch-action:manipulation}
+        @media (max-width:640px){
+            nav a{padding:.9rem 1rem;min-height:48px;display:inline-flex;align-items:center;border-radius:8px}
+            .container{padding-left:1rem;padding-right:1rem}
+            .btn-primary{width:100%;text-align:center}
+        }
+    </style>
+    <!-- Premium visual overrides -->
+    <style>
+        :root{
+            --brand-orange: #FF7E00;
+            --brand-yellow: #FFD000;
+            --brand-blue: #3B9AD9;
+            --evropol-dark: #0F2331;
+            --muted: rgba(255,255,255,0.06);
+        }
+
+        body{font-family: 'Inter', system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif; background-color:#fff; color: #0b1220;}
+        h1,h2,h3{font-family: 'Merriweather', serif; }
+
+        /* Header polish */
+        header{background: linear-gradient(180deg, rgba(16,32,49,0.96), rgba(16,32,49,0.9)); border-bottom: 1px solid rgba(255,255,255,0.03);}
+        header .container{max-width:1200px}
+
+        /* Hero */
+        section.bg-evropol-dark.text-white.py-12{background: linear-gradient(180deg, rgba(16,32,49,0.95), rgba(13,42,64,0.92));}
+        .gradient-text{background-image: linear-gradient(90deg,var(--brand-orange),var(--brand-yellow)); -webkit-background-clip:text; background-clip:text;color:transparent}
+
+        /* Cards */
+        .card-surface{background: linear-gradient(180deg, rgba(255,255,255,0.02), rgba(255,255,255,0.01)); border-radius:12px; box-shadow: 0 10px 30px rgba(2,6,23,0.12); transition: transform .26s ease, box-shadow .26s ease; overflow: hidden}
+        .card-surface:hover{transform: translateY(-8px); box-shadow: 0 20px 50px rgba(2,6,23,0.16)}
+
+        /* Buttons */
+        .btn-primary{background: linear-gradient(90deg,var(--brand-orange),var(--brand-yellow)); color:#081020; font-weight:700; border-radius:10px; padding:0.75rem 1.25rem; box-shadow: 0 10px 30px rgba(255,126,0,0.14);}
+        .btn-primary:hover{transform: translateY(-2px); box-shadow: 0 18px 40px rgba(255,126,0,0.18)}
+
+        /* Footer social icons */
+        .social-circle{width:44px;height:44px;display:inline-flex;align-items:center;justify-content:center;border-radius:10px;background:transparent}
+        .social-circle:hover{background: rgba(255,255,255,0.04)}
+
+        @media (prefers-reduced-motion: reduce){
+            *{transition:none!important;animation:none!important}
+        }
+    </style>
     
     <!-- SEO Meta Tags -->
     <meta name="description" content="ООО «Европол Строитель» — ведущий генподрядчик РФ. Полный спектр строительных услуг: проектирование, строительство, отделка, инженерные сети.">
@@ -249,6 +337,7 @@
 </head>
 
 <body class="bg-white text-gray-800">
+    <a class="skip-link sr-only" href="#main-content">Пропустить к содержанию</a>
     <!-- Header -->
     <header id="site-header" class="bg-evropol-dark sticky top-0 z-50 shadow-md">
         <div class="container mx-auto px-4 py-3 md:py-4">
@@ -286,7 +375,7 @@
     </header>
 
     <!-- Hero Section -->
-    <section class="bg-evropol-dark text-white py-12 md:py-20 lg:py-24">
+    <section id="main-content" class="bg-evropol-dark text-white py-12 md:py-20 lg:py-24 reveal">
         <div class="container mx-auto px-4">
             <div class="flex flex-col items-center text-center">
                 <h1 class="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold mb-3 md:mb-4">
@@ -370,7 +459,7 @@
             <h2 class="text-2xl sm:text-3xl md:text-4xl font-bold mb-4 md:mb-6 gradient-text">Наши услуги — строительство и генподряд</h2>
             <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 md:gap-6 lg:gap-8">
                 <!-- Service 1 -->
-                <div class="bg-white rounded-lg shadow-lg overflow-hidden hover:shadow-xl transition-shadow">
+                <div class="card-surface">
                     <div class="h-40 sm:h-48 bg-gray-200 bg-cover bg-center" style="background-image: url('public/Zdaniye.png');"></div>
                     <div class="p-4 md:p-6">
                         <h3 class="text-lg md:text-xl font-bold mb-3 text-evropol-blue">Здания</h3>
@@ -380,7 +469,7 @@
                 </div>
 
                 <!-- Service 2 -->
-                <div class="bg-white rounded-lg shadow-lg overflow-hidden hover:shadow-xl transition-shadow">
+                <div class="card-surface">
                     <div class="h-40 sm:h-48 bg-gray-200 bg-cover bg-center" style="background-image: url('public/monolit.jpg');"></div>
                     <div class="p-4 md:p-6">
                         <h3 class="text-lg md:text-xl font-bold mb-3 text-evropol-blue">Монолитные работы</h3>
@@ -393,7 +482,7 @@
                 </div>
 
                 <!-- Service 3 -->
-                <div class="bg-white rounded-lg shadow-lg overflow-hidden hover:shadow-xl transition-shadow">
+                <div class="card-surface">
                     <div class="h-40 sm:h-48 bg-gray-200 bg-cover bg-center" style="background-image: url('public/stelaji.jpg');"></div>
                     <div class="p-4 md:p-6">
                         <h3 class="text-lg md:text-xl font-bold mb-3 text-evropol-blue">Стеллажные работы</h3>
@@ -406,7 +495,7 @@
                 </div>
 
                 <!-- Service 4 -->
-                <div class="bg-white rounded-lg shadow-lg overflow-hidden hover:shadow-xl transition-shadow">
+                <div class="card-surface">
                     <div class="h-40 sm:h-48 bg-gray-200 bg-cover bg-center" style="background-image: url('public/krovlya.jpg');"></div>
                     <div class="p-4 md:p-6">
                         <h3 class="text-lg md:text-xl font-bold mb-3 text-evropol-blue">Кровля</h3>
@@ -419,7 +508,7 @@
                 </div>
 
                 <!-- Service 5 -->
-                <div class="bg-white rounded-lg shadow-lg overflow-hidden hover:shadow-xl transition-shadow">
+                <div class="card-surface">
                     <div class="h-40 sm:h-48 bg-gray-200 bg-cover bg-center" style="background-image: url('public/nasosy.jpg');"></div>
                     <div class="p-4 md:p-6">
                         <h3 class="text-lg md:text-xl font-bold mb-3 text-evropol-blue">Поставка насосных станций и ИТП</h3>
@@ -428,7 +517,7 @@
                 </div>
 
                 <!-- Service 6 -->
-                <div class="bg-white rounded-lg shadow-lg overflow-hidden hover:shadow-xl transition-shadow">
+                <div class="card-surface">
                     <div class="h-40 sm:h-48 bg-gray-200 bg-cover bg-center" style="background-image: url('public/otdelochnie.jpg');"></div>
                     <div class="p-4 md:p-6">
                         <h3 class="text-lg md:text-xl font-bold mb-3 text-evropol-blue">Отделочные работы</h3>
@@ -548,16 +637,22 @@
                     </div>
                     <!-- Социальные сети -->
                     <div class="flex space-x-3 md:space-x-4 justify-center md:justify-end">
-                        <a href="https://t.me/presentpefect" target="_blank" rel="noopener noreferrer"
-                            class="text-white hover:text-evropol-yellow transition-colors p-2 min-w-[44px] min-h-[44px] flex items-center justify-center" aria-label="Telegram">
+                        <a href="https://t.me/stratummarket" target="_blank" rel="noopener noreferrer"
+                            class="social-circle text-white hover:text-evropol-yellow transition-colors p-2 min-w-[44px] min-h-[44px] flex items-center justify-center" aria-label="Telegram">
                             <svg class="w-5 h-5 md:w-6 md:h-6" fill="currentColor" viewBox="0 0 24 24">
                                 <path d="M12 0C5.373 0 0 5.373 0 12s5.373 12 12 12 12-5.373 12-12S18.627 0 12 0zm5.562 8.16c-.18 1.896-.96 6.504-1.356 8.628-.168.9-.504 1.2-.816 1.236-.696.06-1.224-.456-1.896-.9-1.056-.696-1.656-1.128-2.676-1.8-1.188-.78-.42-1.212.264-1.908.18-.18 3.252-2.976 3.312-3.228.008-.03.012-.138-.052-.198s-.164-.018-.234 0c-.099.024-1.673 1.062-4.722 3.114-.444.306-.846.456-1.206.444-.396-.012-1.164-.216-1.734-.396-.702-.204-1.26-.312-1.212-.66.024-.18.348-.36.948-.54 3.768-1.632 6.27-2.706 7.5-3.228 3.57-1.476 4.32-.348 4.02 1.428z" />
                             </svg>
                         </a>
-                        <a href="https://www.youtube.com/@evropolmoscow" target="_blank" rel="noopener noreferrer"
-                            class="text-white hover:text-evropol-yellow transition-colors p-2 min-w-[44px] min-h-[44px] flex items-center justify-center" aria-label="YouTube">
+                        <a href="https://youtube.com/@bez_peredelok" target="_blank" rel="noopener noreferrer"
+                            class="social-circle text-white hover:text-evropol-yellow transition-colors p-2 min-w-[44px] min-h-[44px] flex items-center justify-center" aria-label="YouTube">
                             <svg class="w-5 h-5 md:w-6 md:h-6" fill="currentColor" viewBox="0 0 24 24">
                                 <path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z" />
+                            </svg>
+                        </a>
+                        <a href="https://www.instagram.com/bez_peredelok?igsh=MnlyYWgxNGljejNw" target="_blank" rel="noopener noreferrer"
+                            class="social-circle text-white hover:text-evropol-yellow transition-colors p-2 min-w-[44px] min-h-[44px] flex items-center justify-center" aria-label="Instagram">
+                            <svg class="w-5 h-5 md:w-6 md:h-6" fill="currentColor" viewBox="0 0 24 24">
+                                <path d="M7 2h10a5 5 0 0 1 5 5v10a5 5 0 0 1-5 5H7a5 5 0 0 1-5-5V7a5 5 0 0 1 5-5zm5 6.5A4.5 4.5 0 1 0 16.5 13 4.5 4.5 0 0 0 12 8.5zm5.25-2.9a1.05 1.05 0 1 0 1.05 1.05 1.05 1.05 0 0 0-1.05-1.05zM12 10.5A1.5 1.5 0 1 1 10.5 12 1.5 1.5 0 0 1 12 10.5z" />
                             </svg>
                         </a>
                         <a href="https://vk.com/evropolmsk" target="_blank" rel="noopener noreferrer"
@@ -575,39 +670,38 @@
 
     <!-- JavaScript -->
     <script>
-        (function() {
-            'use strict';
+        // Back-to-top and reveal animations
+        (function(){
+            const btn = document.createElement('button');
+            btn.id = 'back-to-top';
+            btn.setAttribute('aria-label','Наверх');
+            btn.innerHTML = '<svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 15l7-7 7 7"></path></svg>';
+            document.body.appendChild(btn);
 
-            // Mobile menu functionality
-            const menuToggle = document.getElementById('menu-toggle');
-            const mobileMenu = document.getElementById('mobile-menu');
+            const cta = document.createElement('a');
+            cta.id = 'float-cta';
+            cta.href = 'tel:+74955188939';
+            cta.innerText = 'Позвонить';
+            cta.setAttribute('aria-label','Позвонить');
+            document.body.appendChild(cta);
 
-            if (menuToggle && mobileMenu) {
-                menuToggle.addEventListener('click', function() {
-                    const isHidden = mobileMenu.classList.contains('hidden');
-                    mobileMenu.classList.toggle('hidden', !isHidden);
-                    menuToggle.setAttribute('aria-expanded', !isHidden);
-                    
-                    if (!isHidden) {
-                        mobileMenu.querySelector('a')?.focus();
-                    }
-                });
+            btn.addEventListener('click', ()=> window.scrollTo({top:0,behavior:'smooth'}));
 
-                mobileMenu.querySelectorAll('a').forEach(link => {
-                    link.addEventListener('click', function() {
-                        mobileMenu.classList.add('hidden');
-                        menuToggle.setAttribute('aria-expanded', 'false');
-                    });
-                });
+            window.addEventListener('scroll', ()=>{
+                if(window.scrollY > 300){ btn.style.display = 'block'; } else { btn.style.display = 'none'; }
+            });
 
-                document.addEventListener('click', function(event) {
-                    if (!menuToggle.contains(event.target) && !mobileMenu.contains(event.target)) {
-                        mobileMenu.classList.add('hidden');
-                        menuToggle.setAttribute('aria-expanded', 'false');
-                    }
-                });
-            }
-
+            const reveals = document.querySelectorAll('.reveal');
+            if('IntersectionObserver' in window){
+                const io = new IntersectionObserver(entries=>{
+                    entries.forEach(e=>{ if(e.isIntersecting){ e.target.classList.add('show'); io.unobserve(e.target); } });
+                },{threshold:0.12});
+                reveals.forEach(r=>io.observe(r));
+            } else { reveals.forEach(r=>r.classList.add('show')); }
+        })();
+    </script>
+    <script>
+        // Legacy mobile menu handler removed — enhanced handler applied separately
             // Smooth scroll для якорей
             document.querySelectorAll('a[href^="#"]').forEach(anchor => {
                 anchor.addEventListener('click', function(e) {
